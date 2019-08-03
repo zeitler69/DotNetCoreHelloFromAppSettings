@@ -1,5 +1,4 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
-WORKDIR /bin/Release
-COPY DotNetCoreHelloFromAppSettings.dll /app
+COPY /bin/Release/DotNetCoreHelloFromAppSettings.dll /app
 #ENTRYPOINT ["/app/reconfiguration_script.sh"]
 ENTRYPOINT ["dotnet", "/app/DotNetCoreHelloFromAppSettings.dll"]
