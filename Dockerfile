@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
-WORKDIR src/DotNetCoreHelloFromAppSettings/bin/Release/netcoreapp2.0
+WORKDIR /src/DotNetCoreHelloFromAppSettings/bin/Release/netcoreapp2.0
 COPY DotNetCoreHelloFromAppSettings.dll /app
 COPY appsettings.json /app
 #COPY DotNetCoreHelloFromAppSettings.dll /app
