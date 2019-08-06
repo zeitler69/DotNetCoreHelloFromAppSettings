@@ -1,4 +1,7 @@
 #!/bin/bash
+echo $PWD
+cd /app
+echo $PWD
 if [ -n "$HelloValue" ]
 then
 {
