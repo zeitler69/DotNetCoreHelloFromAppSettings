@@ -1,5 +1,4 @@
 #!/bin/bash
-cd /app
 if [ -n "$HelloValue" ]
 then
 {
@@ -8,6 +7,5 @@ then
   echo '}'
 } > appsettings.json
 fi
-echo "script works great"
-echo pwd
+pwd
 dotnet DotNetCoreHelloFromAppSettings.dll
