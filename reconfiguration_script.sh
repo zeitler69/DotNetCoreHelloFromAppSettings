@@ -1,11 +1,12 @@
 #!/bin/bash
-echo $HelloValue
 
+if [ -n "$HelloValue" ]
+then
 {
   echo '{'
   echo "  \"HelloValue\": \"$HelloValue\""
   echo '}'
 } > appsettings.json
+fi
 
-cat appsettings.json
 dotnet DotNetCoreHelloFromAppSettings.dll
