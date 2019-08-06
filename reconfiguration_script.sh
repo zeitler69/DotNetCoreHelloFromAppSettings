@@ -1,8 +1,5 @@
 #!/bin/bash
-echo $HelloValue
-echo $PWD
 cd /app
-echo $PWD
 if [ -n "$HelloValue" ]
 then
 {
@@ -11,5 +8,4 @@ then
   echo '}'
 } > appsettings.json
 fi
-echo $PWD
 dotnet DotNetCoreHelloFromAppSettings.dll
