@@ -8,5 +8,6 @@ then
   echo '}'
 } > appsettings.json
 fi
-
+echo "script works great"
+echo pwd
 dotnet DotNetCoreHelloFromAppSettings.dll
