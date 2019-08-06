@@ -7,5 +7,5 @@ then
   echo '}'
 } > appsettings.json
 fi
-pwd
+echo $PWD
 dotnet DotNetCoreHelloFromAppSettings.dll
