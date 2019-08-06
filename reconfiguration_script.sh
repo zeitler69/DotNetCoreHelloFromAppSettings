@@ -1,6 +1,6 @@
 #!/bin/bash
-echo "$HelloValue"
-cd /app
+echo $HelloValue
+
 {
   echo '{'
   echo "  \"HelloValue\": \"$HelloValue\""
@@ -8,4 +8,4 @@ cd /app
 } > appsettings.json
 
 cat appsettings.json
-#dotnet DotNetCoreHelloFromAppSettings.dll
+dotnet DotNetCoreHelloFromAppSettings.dll
