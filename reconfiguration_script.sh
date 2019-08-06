@@ -9,4 +9,5 @@ then
 } > appsettings.json
 fi
 
+cd /app
 dotnet DotNetCoreHelloFromAppSettings.dll
