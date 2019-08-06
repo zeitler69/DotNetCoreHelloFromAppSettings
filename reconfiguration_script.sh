@@ -1,4 +1,11 @@
 #!/bin/bash
-echo "$ZE_VAR"
-#cd /app
+echo "$HelloValue"
+cd /app
+{
+  echo '{'
+  echo '  "HelloValue": "$HelloValue"'
+  echo '}'
+} > appsettings.json
+
+cat appsettings.json
 #dotnet DotNetCoreHelloFromAppSettings.dll
