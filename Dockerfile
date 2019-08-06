@@ -2,4 +2,4 @@
 FROM microsoft/aspnetcore:2.0.0
 COPY /src/DotNetCoreHelloFromAppSettings/bin/Release/netcoreapp2.0/publish /app
 #ENTRYPOINT ["/app/reconfiguration_script.sh"]
-ENTRYPOINT ["dotnet", "/app/DotNetCoreHelloFromAppSettings.dll"]
+#ENTRYPOINT ["dotnet", "/app/DotNetCoreHelloFromAppSettings.dll"]
