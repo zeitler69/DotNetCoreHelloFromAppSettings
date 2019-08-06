@@ -1,6 +1,5 @@
 #!/bin/bash
-echo "Hello World!"
-
-
-#cd /app
-#dotnet DotNetCoreHelloFromAppSettings.dll
+echo "kek"
+echo ZE_VAR
+cd /app
+dotnet DotNetCoreHelloFromAppSettings.dll
