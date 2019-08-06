@@ -1,4 +1,5 @@
 #!/bin/bash
+echo $HelloValue
 echo $PWD
 cd /app
 echo $PWD
