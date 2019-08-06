@@ -3,7 +3,7 @@ echo "$HelloValue"
 cd /app
 {
   echo '{'
-  echo '  "HelloValue": "$HelloValue"'
+  echo '  "HelloValue": $HelloValue'
   echo '}'
 } > appsettings.json
 
