@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd /app
 if [ -n "$HelloValue" ]
 then
 {
