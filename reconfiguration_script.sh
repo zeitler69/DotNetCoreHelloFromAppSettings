@@ -5,6 +5,6 @@ echo $HelloValue
   echo "  \"HelloValue\": \"$HelloValue\""
   echo '}'
 } > /app/appsettings.json
-
-cat /app/appsettings.json
+cd /app
+cat appsettings.json
 #dotnet DotNetCoreHelloFromAppSettings.dll
