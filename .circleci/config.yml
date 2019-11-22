@@ -72,7 +72,6 @@ workflows:
           requires:
             - build-app
       - deploy-image:
-          context: dockerhub
-          type: approval
-          #requires:
-          #  - build&push-image
+          #type: approval
+          requires:
+            - build&push-image
