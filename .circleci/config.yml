@@ -57,11 +57,10 @@ jobs:
             - "a4:81:9d:74:f0:0a:a9:3c:ce:26:f4:ad:a0:58:ea:f2"
       - run:
           name: SSH into EC2 instance, pull docker image and run container
-          #background: true
           command: |
             ssh -o "StrictHostKeyChecking no" ec2-user@ec2-54-91-146-135.compute-1.amazonaws.com \<< EOF
               docker pull $IMAGE_NAME:latest
-              docker run -e HelloValue="Fuck this shit!" -dit $IMAGE_NAME:latest
+              docker run -e HelloValue="Fuck this shit!" -it $IMAGE_NAME:latest
             EOF
 workflows:
   version: 2
