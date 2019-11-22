@@ -27,7 +27,7 @@ jobs:
               paths:
                 - Dockerfile
                 - reconfiguration_script.sh
-                - src/DotNetCoreHelloFromAppSettings/bin/Debug/netcoreapp2.0
+                - src/DotNetCoreHelloFromAppSettings/bin/Debug/netcoreapp2.0/publish
   build-image:
     environment:
       IMAGE_NAME: zeitler/circleci-ci-sample
