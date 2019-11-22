@@ -69,10 +69,9 @@ workflows:
     jobs:
       - deploy-image
       - build-app:
-        requires:
-          - deploy-image
+          requires:
+            - deploy-image
       - build-image:
           context: dockerhub
           requires:
             - build-app
-          #type: approval
