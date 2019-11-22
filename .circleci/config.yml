@@ -1,6 +1,13 @@
-version: 2
+version: 2.1
+    executors:
+      docker-common:
+        environment:
+          IMAGE_NAME: zeitler/circleci-ci-sample
+        docker:
+#          - image: circleci/buildpack-deps:stretch
+          - image: mcr.microsoft.com/dotnet/core/runtime:2.2
 jobs:
-  build:
+  build-app:
     docker:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
     steps:
@@ -22,3 +29,37 @@ jobs:
           name: Run Unit Tests
           working_directory: ~/project/src/UnitTestProject
           command: dotnet test
+      - persist_to_workspace:
+              root: .
+              paths:
+                - Dockerfile
+                - src/DotNetCoreHelloFromAppSettings/bin/Debug/netcoreapp2.0/DotNetCoreHelloFromAppSettings.dll
+  build-image:
+    executor: docker-common
+    steps:
+      - attach_workspace:
+          at: .
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t $IMAGE_NAME:latest .
+#      - run:
+#          name: Archive Docker image
+#          command: docker save -o image.tar $IMAGE_NAME
+#      - persist_to_workspace:
+#          root: .
+#          paths:
+#            - ./image.tar
+
+workflows:
+  version: 2
+  build-master:
+    jobs:
+      - build-app:
+      - build-image:
+          requires:
+            - build-app
+#      - push-image:
+#          requires:
+#            - build-image
