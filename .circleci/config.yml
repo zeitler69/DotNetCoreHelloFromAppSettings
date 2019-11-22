@@ -16,6 +16,7 @@ jobs:
       - run:
           name: Run App
           working_directory: ~/project/src/DotNetCoreHelloFromAppSettings
+          background: true
           command: dotnet run
       - run:
           name: Run Unit Tests
