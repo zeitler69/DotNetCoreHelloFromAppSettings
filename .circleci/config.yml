@@ -1,11 +1,11 @@
 version: 2.1
-  executors:
-    docker-common:
-      environment:
-        IMAGE_NAME: zeitler/circleci-ci-sample
-      docker:
-#        - image: circleci/buildpack-deps:stretch
-        - image: mcr.microsoft.com/dotnet/core/runtime:2.2
+executors:
+  docker-common:
+    environment:
+      IMAGE_NAME: zeitler/circleci-ci-sample
+    docker:
+#      - image: circleci/buildpack-deps:stretch
+      - image: mcr.microsoft.com/dotnet/core/runtime:2.2
 jobs:
   build-app:
     docker:
