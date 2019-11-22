@@ -40,14 +40,16 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            docker build -t $IMAGE_NAME .
+            docker build -t $IMAGE_NAME:latest .
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
-            docker tag $IMAGE_NAME $IMAGE_NAME:latest
+            #docker tag $IMAGE_NAME $IMAGE_NAME:latest
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push $IMAGE_NAME:latest
   deploy-image:
+    environment:
+      IMAGE_NAME: zeitler/circleci-ci-sample
     docker:
       - image: circleci/buildpack-deps:stretch
     steps:
