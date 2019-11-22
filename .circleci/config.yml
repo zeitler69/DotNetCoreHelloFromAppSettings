@@ -59,7 +59,7 @@ jobs:
           name: SSH into EC2 instance, pull docker image and run container
           #background: true
           command: |
-            ssh -o "StrictHostKeyChecking no" ec2-user@ec2-54-91-146-135.compute-1.amazonaws.com \ << EOF
+            ssh -o "StrictHostKeyChecking no" ec2-user@ec2-54-91-146-135.compute-1.amazonaws.com \<< EOF
               docker pull $IMAGE_NAME:latest
               docker run -e HelloValue="Fuck this shit!" -dit $IMAGE_NAME:latest
             EOF
