@@ -4,7 +4,7 @@ executors:
     environment:
       IMAGE_NAME: zeitler/circleci-ci-sample
     docker:
-#      - image: circleci/buildpack-deps:stretch
+#        - image: circleci/buildpack-deps:stretch
       - image: mcr.microsoft.com/dotnet/core/runtime:2.2
 jobs:
   build-app:
@@ -56,7 +56,7 @@ workflows:
   version: 2
   build-master:
     jobs:
-      - build-app:
+      - build-app
       - build-image:
           requires:
             - build-app
