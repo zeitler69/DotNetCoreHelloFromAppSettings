@@ -67,7 +67,7 @@ workflows:
   build-master:
     jobs:
       - build-app
-      - build-image:
+      - build&push-image:
           context: dockerhub
           requires:
             - build-app
@@ -75,4 +75,4 @@ workflows:
           context: dockerhub
           type: approval
           requires:
-            - build-image
+            - build&push-image
