@@ -72,7 +72,7 @@ workflows:
           context: dockerhub
           requires:
             - build-app
-      - deploy-image
+      - deploy-image:
           requires:
             - build-image
       
