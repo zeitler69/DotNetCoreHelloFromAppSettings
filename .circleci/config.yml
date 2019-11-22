@@ -28,7 +28,7 @@ jobs:
                 - Dockerfile
                 - reconfiguration_script.sh
                 - src/DotNetCoreHelloFromAppSettings/bin/Debug/netcoreapp2.0/DotNetCoreHelloFromAppSettings.dll
-  build-image:
+  build&push-image:
     environment:
       IMAGE_NAME: zeitler/circleci-ci-sample
     docker:
@@ -46,6 +46,21 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push $IMAGE_NAME:latest
+  deploy-image:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "a4:81:9d:74:f0:0a:a9:3c:ce:26:f4:ad:a0:58:ea:f2"
+      - run:
+          name: Login to EC2 instance
+          command: |
+            ssh ec2-user@ec2-54-91-146-135.compute-1.amazonaws.com
+      - run:
+          name: Pull docker image
+          command: |
+            docker pull $IMAGE_NAME:latest
 
 workflows:
   version: 2
@@ -56,6 +71,8 @@ workflows:
           context: dockerhub
           requires:
             - build-app
-#      - push-image:
-#          requires:
-#            - build-image
+      - deploy-image:
+          context: dockerhub
+          type: approval
+          requires:
+            - build-image
