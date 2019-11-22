@@ -67,12 +67,12 @@ workflows:
   version: 2
   build-master:
     jobs:
-      #- build-app
-      #- build-image:
-       #   context: dockerhub
-        #  requires:
-         #   - build-app
-      - deploy-image:
+      - deploy-image
+      - build-app:
+        requires:
+          - deploy-image
+      - build-image:
+          context: dockerhub
+          requires:
+            - build-app
           #type: approval
-          #requires:
-           # - build-image
