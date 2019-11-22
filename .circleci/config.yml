@@ -5,19 +5,19 @@ jobs:
       - image: mcr.microsoft.com/dotnet/core/sdk:2.2
     steps:
       - checkout
-      - run
+      - run:
           name: Restore packages
           working_directory: ~/src/DotNetCoreHelloFromAppSettings
           command: dotnet restore
-      - run
+      - run:
           name: Build App
           working_directory: ~/src/DotNetCoreHelloFromAppSettings
           command: dotnet build
-      - run
+      - run:
           name: Run App
           working_directory: ~/src/DotNetCoreHelloFromAppSettings
           command: dotnet run
-      - run
+      - run:
           name: Run Unit Tests
           working_directory: ~/src/UnitTestProject
           command: dotnet test
