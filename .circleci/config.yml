@@ -6,18 +6,18 @@ jobs:
     steps:
       - checkout
       - run
-        name: Restore packages
-        working_directory: ~/src/DotNetCoreHelloFromAppSettings
-        command: dotnet restore
+          name: Restore packages
+          working_directory: ~/src/DotNetCoreHelloFromAppSettings
+          command: dotnet restore
       - run
-        name: Build App
-        working_directory: ~/src/DotNetCoreHelloFromAppSettings
-        command: dotnet build
+          name: Build App
+          working_directory: ~/src/DotNetCoreHelloFromAppSettings
+          command: dotnet build
       - run
-        name: Run App
-        working_directory: ~/src/DotNetCoreHelloFromAppSettings
-        command: dotnet run
+          name: Run App
+          working_directory: ~/src/DotNetCoreHelloFromAppSettings
+          command: dotnet run
       - run
-        name: Run Unit Tests
-        working_directory: ~/src/UnitTestProject
-        command: dotnet test
+          name: Run Unit Tests
+          working_directory: ~/src/UnitTestProject
+          command: dotnet test
