@@ -45,7 +45,7 @@ jobs:
           command: |
             docker build -t $IMAGE_NAME:latest .
       - run:
-          name: Push Docker Image to Docker Hub
+          name: Publish Docker Image to Docker Hub
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push $IMAGE_NAME:latest
@@ -71,7 +71,10 @@ workflows:
           context: dockerhub
           requires:
             - build-app
-      - deploy-image:
+      - hold:
           type: approval
           requires:
             - build-image
+      - deploy-image:
+          requires:
+            - hold
