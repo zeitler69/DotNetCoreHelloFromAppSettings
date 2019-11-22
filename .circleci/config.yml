@@ -61,18 +61,18 @@ jobs:
           command: |
             ssh -o "StrictHostKeyChecking no" ec2-user@ec2-54-91-146-135.compute-1.amazonaws.com \
             "docker pull $IMAGE_NAME:latest && \
-            docker run -e HelloValue="Fuck this shit!" -itd $IMAGE_NAME:latest"
-
+            docker run -itd $IMAGE_NAME:latest"
+  #-e HelloValue="Fuck this shit!"
 workflows:
   version: 2
   build-master:
     jobs:
-      - build-app
-      - build-image:
-          context: dockerhub
-          requires:
-            - build-app
+      #- build-app
+      #- build-image:
+       #   context: dockerhub
+        #  requires:
+         #   - build-app
       - deploy-image:
           #type: approval
-          requires:
-            - build-image
+          #requires:
+           # - build-image
