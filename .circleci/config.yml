@@ -57,13 +57,9 @@ jobs:
             - "a4:81:9d:74:f0:0a:a9:3c:ce:26:f4:ad:a0:58:ea:f2"
       - run:
           name: Login to EC2 instance & pull docker image
-          background: true
+          #background: true
           command: |
             ssh -o "StrictHostKeyChecking no" ec2-user@ec2-54-91-146-135.compute-1.amazonaws.com "docker pull $IMAGE_NAME:latest"
-      - run:
-          name: Pull docker image
-          command: |
-            docker pull $IMAGE_NAME:latest
 
 workflows:
   version: 2
