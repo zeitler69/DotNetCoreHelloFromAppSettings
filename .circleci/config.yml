@@ -1,4 +1,10 @@
-version: 2.0
+version: 2.1
+  executors:
+    docker-common:
+      environment:
+        IMAGE_NAME: zeitler/circleci-ci-sample
+      docker:
+        - image: circleci/buildpack-deps:stretch
 jobs:
   build-app:
     docker:
@@ -29,10 +35,7 @@ jobs:
                 - reconfiguration_script.sh
                 - src/DotNetCoreHelloFromAppSettings/bin/Debug/netcoreapp2.0/publish
   build-image:
-    environment:
-      IMAGE_NAME: zeitler/circleci-ci-sample
-    docker:
-      - image: circleci/buildpack-deps:stretch
+    executor: docker-common
     steps:
       - attach_workspace:
           at: .
@@ -47,21 +50,18 @@ jobs:
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push $IMAGE_NAME:latest
   deploy-image:
-    environment:
-      IMAGE_NAME: zeitler/circleci-ci-sample
-    docker:
-      - image: circleci/buildpack-deps:stretch
+    executor: docker-common
     steps:
       - add_ssh_keys:
           fingerprints:
             - "a4:81:9d:74:f0:0a:a9:3c:ce:26:f4:ad:a0:58:ea:f2"
       - run:
-          name: Login to EC2 instance & pull docker image
+          name: SSH into EC2 instance, pull docker image and run container
           #background: true
           command: |
             ssh -o "StrictHostKeyChecking no" ec2-user@ec2-54-91-146-135.compute-1.amazonaws.com << EOF
               docker pull $IMAGE_NAME:latest
-              docker run -e HelloValue="Fuck this shit!" $IMAGE_NAME:latest
+              docker run -e HelloValue="Fuck this shit!" -dit $IMAGE_NAME:latest
             EOF
 workflows:
   version: 2
