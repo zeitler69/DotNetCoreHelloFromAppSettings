@@ -59,7 +59,9 @@ jobs:
           name: Login to EC2 instance & pull docker image
           #background: true
           command: |
-            ssh -o "StrictHostKeyChecking no" ec2-user@ec2-54-91-146-135.compute-1.amazonaws.com "docker pull $IMAGE_NAME:latest"
+            ssh -o "StrictHostKeyChecking no" ec2-user@ec2-54-91-146-135.compute-1.amazonaws.com \
+            "docker pull $IMAGE_NAME:latest && \
+            docker run -e HelloValue="Fuck this shit!" -itd $IMAGE_NAME:latest"
 
 workflows:
   version: 2
