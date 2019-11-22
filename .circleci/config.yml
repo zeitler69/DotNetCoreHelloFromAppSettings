@@ -73,6 +73,6 @@ workflows:
           requires:
             - build-app
       - deploy-image:
-          type: approval
+          #type: approval
           requires:
             - build-image
