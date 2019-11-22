@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Build App
           working_directory: ~/project/src/DotNetCoreHelloFromAppSettings
-          command: dotnet build
+          command: dotnet publish
       - run:
           name: Run App
           working_directory: ~/project/src/DotNetCoreHelloFromAppSettings
@@ -59,10 +59,10 @@ jobs:
           name: Login to EC2 instance & pull docker image
           #background: true
           command: |
-            ssh -o "StrictHostKeyChecking no" ec2-user@ec2-54-91-146-135.compute-1.amazonaws.com \
-            "docker pull $IMAGE_NAME:latest && \
-            docker run -itd $IMAGE_NAME:latest"
-  #-e HelloValue="Fuck this shit!"
+            ssh -o "StrictHostKeyChecking no" ec2-user@ec2-54-91-146-135.compute-1.amazonaws.com << EOF
+              docker pull $IMAGE_NAME:latest
+              docker run -e HelloValue="Fuck this shit!" -it $IMAGE_NAME:latest
+            EOF
 workflows:
   version: 2
   build-master:
@@ -75,4 +75,3 @@ workflows:
       - deploy-image:
           requires:
             - build-image
-      
