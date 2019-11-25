@@ -2,7 +2,7 @@ version: 2.1
 executors:
   docker-common:
     environment:
-      IMAGE_NAME: zeitler/circleci-ci-sample
+      IMAGE_NAME: zeitler/circleci-sample
     docker:
       - image: circleci/buildpack-deps:stretch
 jobs:
